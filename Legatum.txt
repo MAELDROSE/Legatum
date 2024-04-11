@@ -1,0 +1,20 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Leer el archivo Excel y filtrar los datos
+df = pd.read_excel("C:/Users/denzel/Downloads/Libro1.xlsx", sheet_name="2023 LEGATUM",nrows=45)
+df = df.filter(items=['2013 Top', '2023 Top', 'País', 'seguridad y proteccion', 'Gobierno','Salud'])
+#df = df[df['País'] == "Costa Rica"]
+df = df.sort_values(by='Salud', ascending=True)
+
+# Crear el gráfico de barras
+plt.figure(figsize=(19, 6))
+plt.bar(df['País'], df['Salud'], color='skyblue')
+plt.xlabel('País')
+plt.ylabel('Calificación de Salud')
+plt.title('Calificación de Salud en el mundo (2023)')
+plt.xticks(rotation=90)
+plt.tight_layout()
+
+# Mostrar el gráfico
+plt.show()
